@@ -148,7 +148,9 @@ extension ViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? ForecastCollectionViewCell,
               let model = ((viewModel.weather?.model?.weatherForecastDay?
                 .allObjects as? [WeatherForecastDay])?.first?.hourList?
-                .allObjects as? [WeatherInfo])?[indexPath.row] else {
+                .allObjects as? [WeatherInfo])?.sorted(by: { object1, object2 in
+                    return object1.lastUpdatedEpoch < object2.lastUpdatedEpoch
+                })[indexPath.row] else {
             return UICollectionViewCell()
         }
         cell.configureCell(model)
