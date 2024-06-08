@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Weather" representedClassName="Weather" syncable="YES" codeGenerationType="class">
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
+        <relationship name="weatherForecastDay" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeatherForecastDay" inverseName="weather" inverseEntity="WeatherForecastDay"/>
+        <relationship name="weatherInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherInfo" inverseName="weather" inverseEntity="WeatherInfo"/>
+    </entity>
+    <entity name="WeatherCondition" representedClassName="WeatherCondition" syncable="YES" codeGenerationType="class">
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="weatherInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherInfo" inverseName="weatherCondition" inverseEntity="WeatherInfo"/>
+    </entity>
+    <entity name="WeatherForecastDay" representedClassName="WeatherForecastDay" syncable="YES" codeGenerationType="class">
+        <attribute name="timeEpoch" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="hourList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeatherInfo" inverseName="hour" inverseEntity="WeatherInfo"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="weatherForecastDay" inverseEntity="Weather"/>
+    </entity>
+    <entity name="WeatherInfo" representedClassName="WeatherInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="humidity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastUpdatedEpoch" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="windSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="hour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherForecastDay" inverseName="hourList" inverseEntity="WeatherForecastDay"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="weatherInfo" inverseEntity="Weather"/>
+        <relationship name="weatherCondition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherCondition" inverseName="weatherInfo" inverseEntity="WeatherCondition"/>
+    </entity>
+</model>
