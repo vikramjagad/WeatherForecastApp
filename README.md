@@ -6,4 +6,4 @@
 - Run the application.
 
 - Sample Video:
-https://github.com/vikramjagad/WeatherForecastApp/assets/68367137/c3a77ed6-5893-4e13-9a30-f954fcd0afc2
+https://github.com/vikramjagad/WeatherForecastApp/assets/68367137/33a5885e-4ca9-41e1-b7e5-42f4562cef55
